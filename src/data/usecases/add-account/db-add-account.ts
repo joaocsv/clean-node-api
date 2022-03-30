@@ -2,7 +2,7 @@ import { AccountModel, AddAccount, AddAccountModel, Encrypter, AddAccountReposit
 
 export class DbAddAccount implements AddAccount {
   private readonly encrypter: Encrypter
-  private readonly addAccountRepository
+  private readonly addAccountRepository: AddAccountRepository
 
   constructor (encrypter: Encrypter, addAccountRepository: AddAccountRepository) {
     this.encrypter = encrypter
@@ -12,7 +12,7 @@ export class DbAddAccount implements AddAccount {
   async add (addAccountModel: AddAccountModel): Promise<AccountModel> {
     const passwordHashed = await this.encrypter.encrypt(addAccountModel.password)
 
-    this.addAccountRepository.add(Object.assign({}, addAccountModel, { password: passwordHashed }))
+    await this.addAccountRepository.add(Object.assign({}, addAccountModel, { password: passwordHashed }))
 
     return await new Promise(resolve => resolve(null))
   }
