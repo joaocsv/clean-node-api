@@ -7,8 +7,12 @@ describe('Account Mongo Repository', () => {
     await MongoHelper.connect(process.env.MONGO_URL)
   })
 
+  const makeSut = (): AccountMongoRepository => {
+    return new AccountMongoRepository()
+  }
+
   test('Should return an account on success', async () => {
-    const sut = new AccountMongoRepository()
+    const sut = makeSut()
 
     const account = await sut.add({
       name: 'any_name',
