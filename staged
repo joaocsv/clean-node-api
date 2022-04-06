@@ -1,5 +1,0 @@
-
-> node-clean-code@1.0.0 test
-> jest --passWithNoTests --silent --noStackTrace --runInBand --no-cache
-
-Deseja finalizar o arquivo em lotes (S/N)? 
