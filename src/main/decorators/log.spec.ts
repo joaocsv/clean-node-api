@@ -6,7 +6,7 @@ import { AccountModel } from '../../domain/models/account'
 
 const makeAddLogErrorRepositoryStub = (): AddLogErrorRepository => {
   class AddLogErrorRepositoryStub implements AddLogErrorRepository {
-    async add (stack: string): Promise<void> {
+    async addError (stack: string): Promise<void> {
       return await Promise.resolve()
     }
   }
@@ -89,7 +89,7 @@ describe('LogController Decorator', () => {
 
     jest.spyOn(controllerStub, 'handle').mockReturnValueOnce(Promise.resolve(makeHttpServerError()))
 
-    const addLogErrorRepositorySpy = jest.spyOn(addLogErrorRepositoryStub, 'add')
+    const addLogErrorRepositorySpy = jest.spyOn(addLogErrorRepositoryStub, 'addError')
 
     await sut.handle(makeFakeHttpRequest())
 
