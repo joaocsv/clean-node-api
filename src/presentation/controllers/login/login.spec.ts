@@ -5,6 +5,16 @@ import { HttpRequest } from '../../protocols'
 import { LoginController } from '../login/login'
 import { EmailValidator } from '../signup/signup-protocols'
 
+const makeEmailValidatorStub = (): EmailValidator => {
+  class EmailValidatorStub implements EmailValidator {
+    isValid (email: string): boolean {
+      return true
+    }
+  }
+
+  return new EmailValidatorStub()
+}
+
 const makeAuthenticationStub = (): Authentication => {
   class AuthenticationStub implements Authentication {
     async auth (email: string, password: string): Promise<string> {
@@ -22,14 +32,8 @@ interface SutTypes {
 }
 
 const makeSut = (): SutTypes => {
-  class EmailValidatorStub implements EmailValidator {
-    isValid (email: string): boolean {
-      return true
-    }
-  }
-
+  const emailValidatorStub = makeEmailValidatorStub()
   const authenticationStub = makeAuthenticationStub()
-  const emailValidatorStub = new EmailValidatorStub()
 
   const sut = new LoginController(emailValidatorStub, authenticationStub)
 
