@@ -1,9 +1,13 @@
 import { MissingParamError } from '../../errors'
 import { RequiredFieldValidator } from './required-field-validator'
 
+const makeSut = (): RequiredFieldValidator => {
+  return new RequiredFieldValidator('field')
+}
+
 describe('RequiredField Validator', () => {
   test('Should return a MissingParamError if validator fails', () => {
-    const sut = new RequiredFieldValidator('field')
+    const sut = makeSut()
 
     const resultValidator = sut.validate({ otherField: 'any_value' })
 
@@ -11,7 +15,7 @@ describe('RequiredField Validator', () => {
   })
 
   test('Should not return if validator succeeds', () => {
-    const sut = new RequiredFieldValidator('field')
+    const sut = makeSut()
 
     const resultValidator = sut.validate({ field: 'any_value' })
 
