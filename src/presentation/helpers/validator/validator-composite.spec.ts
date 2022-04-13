@@ -2,17 +2,36 @@ import { MissingParamError } from '../../errors'
 import { Validator } from './validator'
 import { ValidatorComposite } from './validator-composite'
 
+const makeValidatorStub = (): Validator => {
+  class ValidatorStub implements Validator {
+    validate (input: any): Error {
+      return null
+    }
+  }
+
+  return new ValidatorStub()
+}
+
+interface SutTypes {
+  sut: ValidatorComposite
+  validatorStub: Validator
+}
+
+const makeSut = (): SutTypes => {
+  const validatorStub = makeValidatorStub()
+  const sut = new ValidatorComposite([validatorStub])
+
+  return {
+    sut,
+    validatorStub
+  }
+}
+
 describe('Validator Composite', () => {
   test('Should return an error if any validator fails', () => {
-    class ValidatorStub implements Validator {
-      validate (input: any): Error {
-        return new MissingParamError('field')
-      }
-    }
+    const { sut, validatorStub } = makeSut()
 
-    const validatorStub = new ValidatorStub()
-
-    const sut = new ValidatorComposite([validatorStub])
+    jest.spyOn(validatorStub, 'validate').mockReturnValueOnce(new MissingParamError('field'))
 
     const resultValidator = sut.validate({ name: 'any_name' })
 
