@@ -1,7 +1,7 @@
 import { HttpRequest, Authentication } from './login-protocols'
 import { badRequest, serverError, unauthorized, ok } from '../../helpers/http/http-helper'
 import { LoginController } from '../login/login'
-import { Validator } from '../../helpers/validator/validator'
+import { Validator } from '../../protocols/validator'
 
 const makeValidatorStub = (): Validator => {
   class ValidatorStub implements Validator {

@@ -1,4 +1,4 @@
-import { Validator } from '../../../presentation/helpers/validator/validator'
+import { Validator } from '../../../presentation/protocols/validator'
 import { LoginValidatorFactory } from './login-validator'
 import { ValidatorComposite } from '../../../presentation/helpers/validator/validator-composite'
 import { EmailValidator } from '../../../presentation/helpers/validator/email-validator'
