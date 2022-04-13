@@ -1,4 +1,4 @@
-import { HttpRequest, Authentication } from './login-protocols'
+import { HttpRequest, Authentication, AuthenticationModel } from './login-protocols'
 import { badRequest, serverError, unauthorized, ok } from '../../helpers/http/http-helper'
 import { LoginController } from '../login/login'
 import { Validator } from '../../protocols/validator'
@@ -15,7 +15,7 @@ const makeValidatorStub = (): Validator => {
 
 const makeAuthenticationStub = (): Authentication => {
   class AuthenticationStub implements Authentication {
-    async auth (email: string, password: string): Promise<string> {
+    async auth (authenticationModel: AuthenticationModel): Promise<string> {
       return 'any_token'
     }
   }
@@ -57,7 +57,10 @@ describe('Login Controller', () => {
 
     await sut.handle(makeFakeHttpRequest())
 
-    expect(authSpy).toHaveBeenCalledWith('any_email@mail.com', 'any_password')
+    expect(authSpy).toHaveBeenCalledWith({
+      email: 'any_email@mail.com',
+      password: 'any_password'
+    })
   })
 
   test('Should return 401 if invalid credentials are provided', async () => {
