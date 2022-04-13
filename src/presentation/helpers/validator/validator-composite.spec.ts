@@ -48,4 +48,12 @@ describe('Validator Composite', () => {
 
     expect(resultValidator).toEqual(new Error())
   })
+
+  test('Should not return if validator succeeds', () => {
+    const { sut } = makeSut()
+
+    const resultValidator = sut.validate({ name: 'any_name' })
+
+    expect(resultValidator).toBeFalsy()
+  })
 })
