@@ -1,7 +1,7 @@
 import { ok, serverError } from '../../presentation/helpers/http/http-helper'
 import { Controller, HttpRequest, HttpResponse } from '../../presentation/protocols'
 import { LogControllerDecorator } from './log'
-import { AddLogErrorRepository } from '../../data/protocols/add-log-error-repository'
+import { AddLogErrorRepository } from '../../data/protocols/db/add-log-error-repository'
 import { AccountModel } from '../../domain/models/account'
 
 const makeAddLogErrorRepositoryStub = (): AddLogErrorRepository => {
