@@ -11,9 +11,9 @@ import { SignUpValidatorFactory } from './signup-validator'
 export class SignUpFactory implements Factory <Controller> {
   factory (): Controller {
     const salt = 12
-    const encrypter = new BcryptAdapter(salt)
+    const hasher = new BcryptAdapter(salt)
     const accountRepository = new AccountMongoRepository()
-    const dbAddAccount = new DbAddAccount(encrypter, accountRepository)
+    const dbAddAccount = new DbAddAccount(hasher, accountRepository)
     const validator = new SignUpValidatorFactory().factory()
     const signUpController = new SignUpController(dbAddAccount, validator)
     const logMongoRepository = new LogMongoRepository()
