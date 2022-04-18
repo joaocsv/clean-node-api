@@ -1,6 +1,6 @@
 import { Factory } from '../factory'
 import { Validator } from '../../../presentation/protocols/validator'
-import { EmailValidatorAdapter } from '../../../utils/email-validator-adapter'
+import { EmailValidatorAdapter } from '../../adapters/validators/email-validator-adapter'
 import { ValidatorComposite, RequiredFieldValidator, EmailValidator, CompareFieldsValidator } from '../../../presentation/helpers/validator'
 
 export class SignUpValidatorFactory implements Factory <Validator> {
