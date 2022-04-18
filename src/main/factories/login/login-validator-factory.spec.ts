@@ -1,5 +1,5 @@
 import { Validator } from '../../../presentation/protocols/validator'
-import { LoginValidatorFactory } from './login-validator'
+import { LoginValidatorFactory } from './login-validator-factory'
 import { EmailValidator, RequiredFieldValidator, ValidatorComposite } from '../../../presentation/helpers/validator'
 import { EmailValidatorAdapter } from '../../../utils/email-validator-adapter'
 
