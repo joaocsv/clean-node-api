@@ -4,7 +4,8 @@
     "module": "commonjs",
     "target": "es2022",
     "esModuleInterop": true,
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "sourceMap": true
   },
   "include": [
     "src"
