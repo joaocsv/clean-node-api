@@ -1,9 +1,9 @@
-import { Validator } from '../../../presentation/protocols/validator'
+import { Validator } from '../../../../presentation/protocols/validator'
 import { LoginValidatorFactory } from './login-validator-factory'
-import { EmailValidator, RequiredFieldValidator, ValidatorComposite } from '../../../presentation/helpers/validator'
-import { EmailValidatorAdapter } from '../../adapters/validators/email-validator-adapter'
+import { EmailValidator, RequiredFieldValidator, ValidatorComposite } from '../../../../presentation/helpers/validator'
+import { EmailValidatorAdapter } from '../../../adapters/validators/email-validator-adapter'
 
-jest.mock('../../../presentation/helpers/validator/validator-composite')
+jest.mock('../../../../presentation/helpers/validator/validator-composite')
 
 describe('LoginValidator factory', () => {
   test('Should call ValidatorComposite with all validators', () => {
