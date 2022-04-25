@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/main/server.js",
     "build": "rimraf dist && tsc",
-    "debug": "node --inspect=0.0.0.0:9222 -nolazy dist/main/server.js",
+    "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 -nolazy ./dist/main/server.js",
     "up": "npm run build && docker-compose up -d",
     "down": "docker-compose down",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --no-cache",
@@ -39,6 +39,7 @@
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.7",
+    "nodemon": "^2.0.15",
     "rimraf": "^3.0.2",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.4",

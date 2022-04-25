@@ -13,9 +13,9 @@ services:
     image: node:16
     working_dir: /usr/src/node-clean-code
     restart: always
-    command: bash -c "npm install --production && npm run debug"
+    command: bash -c "npm install --production && npm install -D nodemon && npm run debug"
     volumes:
-      - ./dist:/usr/src/node-clean-code/dist
+      - ./dist/:/usr/src/node-clean-code/dist/
       - ./package.json:/usr/src/node-clean-code/package.json
     ports:
       - "5050:5050"
